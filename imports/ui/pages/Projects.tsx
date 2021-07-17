@@ -28,7 +28,7 @@ const Projects: React.FC<Props> = ({ }) => {
       onClose={() => setIsModalOpen(false)}
     >
       <h1 className="text-center text-lg font-semibold">Création d'un projet</h1>
-      <CreateProject />
+      <CreateProject onSubmit={() => { setIsModalOpen(false) }} />
     </Modal>
 
   </>
