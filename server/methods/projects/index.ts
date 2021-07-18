@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import CreateProject from './Create';
+import MethodCreateProject from './Create';
 
 Meteor.methods({
-  'projects.create': CreateProject
+  'projects.create': MethodCreateProject
 })
