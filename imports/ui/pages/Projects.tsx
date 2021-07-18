@@ -22,14 +22,14 @@ const Projects: React.FC<Props> = ({ }) => {
     <div className="flex flex-col gap-4">
       <div className="w-full text-center font-semibold text-2xl">Mes Projets</div>
       <hr className="border-gray-500" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {isReady ? (
-          <PreventEmpty count={projects.count()}>
+      {isReady ? (
+        <PreventEmpty count={projects.count()}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {projects.fetch().map((project) => (<ProjectCard key={project._id} project={project} />))}
-          </PreventEmpty>
-        ) : (<Loading />)}
 
-      </div>
+          </div>
+        </PreventEmpty>
+      ) : (<Loading />)}
       <FloatingButton onClick={() => setIsModalOpen(true)}>
         <FontAwesomeIcon icon={faPlus} />
       </FloatingButton>

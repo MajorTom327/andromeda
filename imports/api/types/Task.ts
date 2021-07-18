@@ -3,7 +3,8 @@ export interface ITask {
   label: string
   detail: string
   project: string
-  date: string
+  date: string,
+  user: string
 }
 
 export default ITask

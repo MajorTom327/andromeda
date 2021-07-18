@@ -13,7 +13,7 @@ const Button: React.FC<Props> = ({ children, onClick, type }) => {
     'border rounded px-4 py-2 text-center text-white text-semibold',
     "outline-none focus:ring",
     {
-      'bg-gray-500': type === 'default',
+      'bg-gray-500 border-gray-600': type === 'default',
       'bg-red-500 hover:bg-red-600 border-red-600': type === 'danger',
       'bg-green-600 hover:bg-green-700 border-green-700': type === 'success',
       'bg-blue-600 hover:bg-blue-700 border-blue-700': type === 'info',
