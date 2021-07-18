@@ -3,3 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import './css/input';
+
+body {
+  @apply select-none;
+}

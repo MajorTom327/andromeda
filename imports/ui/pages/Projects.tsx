@@ -8,6 +8,8 @@ import CreateProject from '../forms/CreateProject';
 import useAllProjects from '/imports/hooks/useAllProjects';
 import ProjectCard from '../components/ProjectCard';
 import PreventEmpty from '../components/PreventEmpty';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
 };
@@ -28,7 +30,9 @@ const Projects: React.FC<Props> = ({ }) => {
         ) : (<Loading />)}
 
       </div>
-      <FloatingButton onClick={() => setIsModalOpen(true)}>+</FloatingButton>
+      <FloatingButton onClick={() => setIsModalOpen(true)}>
+        <FontAwesomeIcon icon={faPlus} />
+      </FloatingButton>
     </div>
     <Modal
       isOpen={isModalOpen}

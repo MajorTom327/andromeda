@@ -6,12 +6,12 @@ import ITask from '../api/types/Task';
 
 type Response = [
   boolean,
-  Mongo.Cursor<ITask>
+  ITask[]
 ]
 
 export const useAllTasks = (task: Partial<ITask>): Response => useTracker(() => {
   const ready = Meteor.subscribe('tasks.all').ready();
-  const tasks = Tasks.find(task)
+  const tasks = Tasks.find(task).fetch()
 
   return [ready, tasks];
 });

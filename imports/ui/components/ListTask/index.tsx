@@ -18,8 +18,8 @@ const ListTask: React.FC<Props> = ({ date }) => {
   }
   return (
     <div className="flex flex-col gap-4">
-      <PreventEmpty count={tasks.count()}>
-        {tasks.fetch().map((task) => <TaskView key={task._id} task={task} />)}
+      <PreventEmpty count={tasks.length}>
+        {tasks.map((task) => <TaskView key={task._id} task={task} />)}
       </PreventEmpty>
 
     </div>

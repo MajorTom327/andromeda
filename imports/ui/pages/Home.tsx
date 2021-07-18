@@ -4,6 +4,8 @@ import Modal from '../components/Modal';
 import CreateTask from '../forms/CreateTask';
 import FloatingButton from '../components/FloatingButton';
 import ListTask from '../components/ListTask';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
 };
@@ -22,7 +24,9 @@ const Home: React.FC<Props> = ({ }) => {
       <div>
         <ListTask />
       </div>
-      <FloatingButton onClick={() => setIsModalOpen(true)}>+</FloatingButton>
+      <FloatingButton onClick={() => setIsModalOpen(true)}>
+        <FontAwesomeIcon icon={faPlus} />
+      </FloatingButton>
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

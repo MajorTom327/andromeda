@@ -6,3 +6,5 @@ export const MethodCreateTask = function (task: ITask) {
 
   return id;
 }
+
+export default MethodCreateTask;

@@ -10,7 +10,7 @@ type Props = {
 const Button: React.FC<Props> = ({ children, onClick, type }) => {
 
   const classes = classNames(
-    'border rounded px-4 py-2 text-center text-white text-semibold select-none',
+    'border rounded px-4 py-2 text-center text-white text-semibold',
     "outline-none focus:ring",
     {
       'bg-gray-500': type === 'default',
