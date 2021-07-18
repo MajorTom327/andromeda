@@ -8,10 +8,12 @@ type Props = {
 
 const HomePage = lazy(() => import('./pages/Home'))
 const ProjectsPage = lazy(() => import('./pages/Projects'));
+const CalendarPage = lazy(() => import('./pages/Calendar'));
 
 const routes = {
   '/': () => <HomePage />,
-  '/projects': () => <ProjectsPage />
+  '/projects': () => <ProjectsPage />,
+  '/calendar': () => <CalendarPage />
 }
 
 const Router: React.FC<Props> = ({ }) => {

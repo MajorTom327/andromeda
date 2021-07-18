@@ -12,7 +12,6 @@ const CreateProject: React.FC<Props> = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm<IProject>();
 
   const onSubmitHandler = (value: IProject) => {
-    console.log(value);
     Meteor.call('projects.create', value, (err: any, id?: string) => {
       if (!err) {
         console.log("Everything is ok", id);

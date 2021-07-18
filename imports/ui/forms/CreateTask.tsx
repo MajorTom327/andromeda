@@ -11,7 +11,7 @@ type Props = {
 }
 
 const CreateTask: React.FC<Props> = ({ onSubmit }) => {
-  const { register, handleSubmit, formState: { errors }, getValues } = useForm<ITask>({
+  const { register, handleSubmit, formState: { errors } } = useForm<ITask>({
     defaultValues: {
       date: DateTime.local().toISODate()
     }
@@ -25,10 +25,7 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
         onSubmit(id);
       }
     })
-    console.log(value);
   }
-
-  console.log(getValues());
 
   return (<div className="flex flex-col gap-3">
     <input type="text" {...register("label", { required: true })} placeholder="Nom de la tache" />
