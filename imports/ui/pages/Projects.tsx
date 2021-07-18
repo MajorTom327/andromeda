@@ -23,7 +23,7 @@ const Projects: React.FC<Props> = ({ }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {isReady ? (
           <PreventEmpty count={projects.count()}>
-            {projects.fetch().map((project) => (<ProjectCard project={project} />))}
+            {projects.fetch().map((project) => (<ProjectCard key={project._id} project={project} />))}
           </PreventEmpty>
         ) : (<Loading />)}
 

@@ -11,13 +11,15 @@ type Props = {
 }
 
 const CreateTask: React.FC<Props> = ({ onSubmit }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<ITask>({
+  const { register, handleSubmit, formState: { errors }, getValues } = useForm<ITask>({
     defaultValues: {
       date: DateTime.local().toISODate()
     }
   });
 
   const [isProjectsReady, projects] = useAllProjects();
+
+  console.log(getValues());
 
   const onSubmitHandler = (value: ITask) => {
     Meteor.call('tasks.create', value, (err, id?: string) => {
@@ -31,12 +33,18 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
     <input type="text" {...register("label", { required: true })} placeholder="Nom de la tache" />
     {errors.label && <span className="error-message">Ce champs est requis</span>}
 
-    <select {...register('project', { required: true })}>
+    <select defaultValue="" {...register('project', { required: true, minLength: 5 })}>
       {isProjectsReady
-        ? projects.fetch().map((project) => <option key={project._id} value={project._id}>{project.name}</option>)
+        ? (
+          <>
+            <option value="">Aucune valeur selectionnée...</option>
+            {projects.fetch().map((project) => <option key={project._id} value={project._id}>{project.name}</option>)}
+          </>
+        )
         : (<option disabled>Chargement en cours...</option>)
       }
     </select>
+    {errors.project && <span className="error-message">Ce champs est requis</span>}
 
     <textarea rows={10} {...register("detail")} placeholder="Détails de la tache" />
 
