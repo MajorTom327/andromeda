@@ -1,3 +1,18 @@
-input {
+input[type="date"], select
+{
+  @apply block appearance-none;
+    /* display:block;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    min-height: 1.2em; */
+}
+
+input, textarea, select {
   @apply bg-gray-500 rounded outline-none focus:ring px-2 py-2;
+  @apply resize-none;
+}
+
+
+.error-message {
+  @apply text-red-500;
 }

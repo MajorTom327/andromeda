@@ -9,7 +9,7 @@ type Props = {
 };
 
 const CreateProject: React.FC<Props> = ({ onSubmit }) => {
-  const { register, control, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<IProject>();
 
   const onSubmitHandler = (value: IProject) => {
     console.log(value);
@@ -24,7 +24,7 @@ const CreateProject: React.FC<Props> = ({ onSubmit }) => {
     });
   }
   return (<div className="flex flex-col gap-3">
-    <input type="text" {...register('name')} placeholder="Nom du projet" />
+    <input type="text" {...register('name', { required: true })} placeholder="Nom du projet" />
 
     <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Valider</Button>
   </div>);
