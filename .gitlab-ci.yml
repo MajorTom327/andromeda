@@ -1,0 +1,33 @@
+image: geoffreybooth/meteor-base
+
+stages:
+  - build
+  - deploy
+
+cache:
+  key: charon-cache
+  paths:
+    - node_modules
+
+
+install-dependencies:
+  stage: .pre
+  script:
+    - meteor npm install
+
+build-job:
+  stage: build
+  script:
+    - meteor build --architecture os.linux.x86_64 --directory ./build
+  artifacts:
+    paths:
+      - build/
+
+deploy-prod:
+  stage: deploy
+  only:
+    - master
+  dependencies:
+    - build-job
+  script:
+    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
