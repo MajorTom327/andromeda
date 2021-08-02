@@ -11,10 +11,7 @@ Meteor.startup(() => {
   WebApp.addHtmlAttributeHook(() => ({ lang: 'fr' }));
 
   if (Meteor.users.find({}).count() === 0) {
-    Accounts.createUser({
-      username: 'majortom327',
-      email: 'me@valentin-thomas.com',
-      password: 'password'
-    })
+    const user: {username: string, email: string, password: string} = Meteor.settings.user;
+    Accounts.createUser(user)
   }
 });
