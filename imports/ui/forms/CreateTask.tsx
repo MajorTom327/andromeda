@@ -19,8 +19,6 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
 
   const [isProjectsReady, projects] = useAllProjects();
 
-  console.log(getValues());
-
   const onSubmitHandler = (value: ITask) => {
     Meteor.call('tasks.create', value, (err, id?: string) => {
       if (!err) {

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  andromeda:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:3000'
+    depends_on:
+      - mongo
+    environment:
+      ROOT_URL: ${APP_ROOT_URL:-http://localhost}
+      MONGO_URL: mongodb://mongo:27017/andromeda
+      PORT: 3000
+      METEOR_SETTINGS: "{\"user\":{\"username\":\"majortom327\",\"email\":\"me@valentin-thomas.com\",\"password\":\"password\"}}"
+
+  mongo:
+    image: mongo:latest
+    command:
+      - --storageEngine=wiredTiger
+    volumes:
+      - data:/data/db
+
+volumes:
+  data:

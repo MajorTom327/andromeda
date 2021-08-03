@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  andromeda:
+    image: majortom327/andromeda
+    build:
+      context: .
+    ports:
+      - 4000:3000
+    links:
+      - mongo
+    restart: always
+    environment:
+      - ROOT_URL=https://andromeda.valentin-thomas.com
+      - MONGO_URL=mongodb://mongo:27017/andromeda
+      - METEOR_SETTINGS={"user":{"username":"majortom327","email":"me@valentin-thomas.com","password":"password"}}
+  mongo:
+    image: mongo:latest

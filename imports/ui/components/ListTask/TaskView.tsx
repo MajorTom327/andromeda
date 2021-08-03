@@ -20,7 +20,6 @@ const TaskView: React.FC<Props> = ({ task }) => {
   const longPress = useLongPress(
     () => {
       setIsOptionEnabled(true);
-      console.log("Pressed")
     },
     () => { }, {
     shouldPreventDefault: true,

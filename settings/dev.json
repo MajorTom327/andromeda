@@ -1,5 +1,7 @@
 {
-  "username": "majortom327",
-  "email": "me@valentin-thomas.com",
-  "password": "password"
+  "user": {
+    "username": "majortom327",
+    "email": "me@valentin-thomas.com",
+    "password": "password"
+  }
 }
