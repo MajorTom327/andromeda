@@ -22,18 +22,18 @@ build-job:
   artifacts:
     paths:
       - build/
-build-docker:
-  image: docker:latest
-  stage: build
-  only:
-    - master
-  services:
-    - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" .
-    - docker push $CI_REGISTRY_IMAGE:latest
+# build-docker:
+#   image: docker:latest
+#   stage: build
+#   only:
+#     - master
+#   services:
+#     - docker:dind
+#   before_script:
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#   script:
+#     - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" .
+#     - docker push $CI_REGISTRY_IMAGE:latest
 
 deploy-prod:
   stage: deploy
@@ -43,3 +43,4 @@ deploy-prod:
     - build-job
   script:
     - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+    - ls
