@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Alert from '../components/Alert';
 import Button from '../components/Button';
 
 type Props = {
@@ -23,20 +24,20 @@ const Login: React.FC<Props> = ({ }) => {
   }
 
   return (
-    <div className="flex justify-center bg-gray-800 p-4 rounded-xl">
-      <div className="container">
+    <div className="card bordered">
+      <div className="card-body">
+        <div className="card-title text-center text-lg font-semibold">
+          Se connecter
+        </div>
         <div className="flex flex-col gap-4">
-          <div className="text-center text-lg font-semibold">
-            Se connecter
-          </div>
           <div className="flex flex-col gap-1">
-            <input type="text" {...register('username', { required: true })} placeholder="Utilisateur" />
-            {errors.username && <span className="error-message">Ce champs est requis</span>}
+            <input className="input input-bordered" type="text" {...register('username', { required: true })} placeholder="Utilisateur" />
+            {errors.username && <Alert>Ce champs est requis</Alert>}
           </div>
 
           <div className="flex flex-col gap-1">
-            <input type="password" {...register('password', { required: true })} placeholder="Mot de passe" />
-            {errors.password && <span className="error-message">Ce champs est requis</span>}
+            <input className="input input-bordered" type="password" {...register('password', { required: true })} placeholder="Mot de passe" />
+            {errors.password && <Alert>Ce champs est requis</Alert>}
           </div>
 
           <Button onClick={handleSubmit(onSubmit)}>

@@ -13,7 +13,7 @@ export const App = () => {
 
 
   return (
-    <div className="bg-gray-700 text-white min-h-screen">
+    <div>
       <Navbar />
       <div className="p-4">
         {!user ? <Login /> : (online ? (<Router />) : (<Offline />))}

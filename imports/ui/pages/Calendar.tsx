@@ -15,7 +15,7 @@ const Calendar: React.FC<Props> = ({ }) => {
       <div className="flex justify-center">
         <div className="flex flex-col gap-4 w-full sm:w-1/2">
           <div>Choisissez une date:</div>
-          <input className="" type="date" value={selectedDate} onChange={onChangeDateHandler} />
+          <input className="input input-bordered" type="date" value={selectedDate} onChange={onChangeDateHandler} />
 
         </div>
 

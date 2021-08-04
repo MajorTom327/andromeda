@@ -23,7 +23,7 @@ const CreateProject: React.FC<Props> = ({ onSubmit }) => {
     });
   }
   return (<div className="flex flex-col gap-3">
-    <input type="text" {...register('name', { required: true })} placeholder="Nom du projet" />
+    <input className="input input-bordered" type="text" {...register('name', { required: true })} placeholder="Nom du projet" />
 
     <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Valider</Button>
   </div>);

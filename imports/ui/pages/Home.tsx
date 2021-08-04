@@ -15,8 +15,8 @@ const Home: React.FC<Props> = ({ }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-center">
-        <div className="w-full flex justify-between text-2xl font-semibold p-4 bg-gray-600 rounded">
+      <div className="alert">
+        <div className="w-full flex justify-between text-2xl font-semibold">
           <div>Dashboard</div>
           <div>{DateTime.local().toLocaleString(DateTime.DATE_SHORT)}</div>
         </div>

@@ -1,8 +1,15 @@
 module.exports = {
-  purge: [
-    './client/**/*.{css,tsx}',
-    './imports/**/*.{css,tsx}',
-  ],
+  purge: {
+    content: [
+      './client/**/*.{css,tsx}',
+      './imports/**/*.{css,tsx}',
+    ],
+    options: {
+      safelist: [
+        /data-theme$/,
+      ]
+    },
+  },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
@@ -13,5 +20,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
 }

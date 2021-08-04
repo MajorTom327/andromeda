@@ -7,11 +7,13 @@ const Offline: React.FC<Props> = ({ }) => {
   return (
     <div className="flex flex-col gap-8">
 
-      <div className="mx-4 p-4 bg-yellow-500 text-center rounded ">
-        <div className="text-xl font-bold">Hors-ligne</div>
-        <p>
-          Vous travaillez actuellement hors-ligne. Il n'est pas possible d'acceder aux données en mode hors-ligne.
-        </p>
+      <div className="card bordered text-center">
+        <div className="card-body">
+          <div className="card-title text-xl font-bold">Hors-ligne</div>
+          <div>
+            Vous travaillez actuellement hors-ligne. Il n'est pas possible d'acceder aux données en mode hors-ligne.
+          </div>
+        </div>
       </div>
 
       <div className="flex justify-center">

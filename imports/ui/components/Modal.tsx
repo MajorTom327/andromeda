@@ -18,13 +18,13 @@ const style = {
     backgroundColor: 'rgba(0, 0, 0, 0.75)'
   },
   content: {
-    color: '#fff',
+    // color: '#fff',
     top: '8rem',
     left: '8rem',
     right: '8rem',
     bottom: '8rem',
     border: 'none',
-    background: '#4B5563',
+    background: 'rgb(9, 9, 11)',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     borderRadius: 16,
