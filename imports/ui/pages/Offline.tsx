@@ -7,7 +7,7 @@ const Offline: React.FC<Props> = ({ }) => {
   return (
     <div className="flex flex-col gap-8">
 
-      <div className="card bordered text-center">
+      <div className="card bordered text-center shadow-2xl">
         <div className="card-body">
           <div className="card-title text-xl font-bold">Hors-ligne</div>
           <div>

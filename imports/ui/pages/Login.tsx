@@ -24,7 +24,7 @@ const Login: React.FC<Props> = ({ }) => {
   }
 
   return (
-    <div className="card bordered">
+    <div className="card bordered shadow-2xl">
       <div className="card-body">
         <div className="card-title text-center text-lg font-semibold">
           Se connecter
