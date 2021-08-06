@@ -24,6 +24,8 @@
 <body style="background-color: #09090b">
   <div id="react-target"></div>
   <script>
-    document.querySelector('html').setAttribute('data-theme', 'luxury');
+    document.addEventListener('ready', () => {
+      document.querySelector('html').setAttribute('data-theme', 'luxury');
+    })
   </script>
 </body>

@@ -23,4 +23,14 @@ module.exports = {
   plugins: [
     require('daisyui'),
   ],
+  daisyui: {
+    theme: [
+      'luxury'
+    ],
+    styled: true,
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+  },
 }
