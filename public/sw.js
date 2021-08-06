@@ -16,7 +16,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  if (!(evt.request.url.indexOf('http') === 0)) return;
+  if (!(event.request.url.indexOf('http') === 0)) return;
 
   const requestToFetch = event.request.clone();
   event.respondWith(
