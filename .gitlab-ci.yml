@@ -59,6 +59,6 @@ deploy-prod:
     - echo "	User root" >> ~/.ssh/config
     - echo "	Port 2200" >> ~/.ssh/config
   script:
-    - scp build/* styx:/home/vthomas/andromeda/build
+    - scp -r build/* styx:/home/vthomas/andromeda/build
     - ssh styx cd /home/vthomas/andromeda && docker-compose build && docker-compose up -d
     - echo "This job has deployed Andromeda from the $CI_COMMIT_BRANCH branch."
