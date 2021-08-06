@@ -41,6 +41,24 @@ deploy-prod:
     - master
   dependencies:
     - build-job
+  before_script:
+    - apt-get clean
+    - apt-get update
+    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -p 2200 styx-sys.com >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+
+    - echo "" > ~/.ssh/config
+    - echo "Host styx" >> ~/.ssh/config
+    - echo "	HostName styx-sys.com" >> ~/.ssh/config
+    - echo "	User root" >> ~/.ssh/config
+    - echo "	Port 2200" >> ~/.ssh/config
   script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
-    - ls
+    - scp build/* styx:/home/vthomas/andromeda/build
+    - ssh styx cd /home/vthomas/andromeda && docker-compose build && docker-compose up -d
+    - echo "This job has deployed Andromeda from the $CI_COMMIT_BRANCH branch."
