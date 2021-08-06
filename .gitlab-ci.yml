@@ -61,4 +61,5 @@ deploy-prod:
   script:
     - scp -r build/* styx:/home/vthomas/andromeda/build
     - ssh -t styx "cd /home/vthomas/andromeda && docker-compose build && docker-compose up -d"
+    - curl "https://smsapi.free-mobile.fr/sendmsg?user=27943770&pass=G1OOFKaZdE4FNM&msg=Le+projet+$CI_PROJECT_NAME+vient+d%27%C3%AAtre+d%C3%A9ployer"
     - echo "This job has deployed Andromeda from the $CI_COMMIT_BRANCH branch."
