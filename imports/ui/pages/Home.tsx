@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import Modal from '../components/Modal';
 import CreateTask from '../forms/CreateTask';
@@ -12,17 +12,25 @@ type Props = {
 
 const Home: React.FC<Props> = ({ }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [currentDate, setCurrentDate] = useState(DateTime.local())
+
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentDate(DateTime.local());
+  }, 1000);
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <div className="flex flex-col gap-4">
       <div className="alert">
         <div className="w-full flex justify-between text-2xl font-semibold">
           <div>Dashboard</div>
-          <div>{DateTime.local().toLocaleString(DateTime.DATE_SHORT)}</div>
+          <div>{currentDate.toLocaleString(DateTime.DATE_SHORT)}</div>
         </div>
       </div>
       <div>
-        <ListTask />
+        <ListTask date={currentDate.toISODate()}/>
       </div>
       <FloatingButton onClick={() => setIsModalOpen(true)}>
         <FontAwesomeIcon icon={faPlus} />

@@ -10,7 +10,7 @@ type Response = [
 ]
 
 export const useAllTasks = (task: Partial<ITask>): Response => useTracker(() => {
-  const ready = Meteor.subscribe('tasks.all').ready();
+  const ready = Meteor.subscribe('tasks.all', task).ready();
   const tasks = Tasks.find(task).fetch()
 
   return [ready, tasks];
