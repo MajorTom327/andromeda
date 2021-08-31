@@ -31,7 +31,7 @@ const Home: React.FC<Props> = ({ }) => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       >
-        <h1 className="text-center text-lg font-semibold">Création d'un projet</h1>
+        <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
         <CreateTask onSubmit={() => { setIsModalOpen(false) }} />
       </Modal>
     </div>
