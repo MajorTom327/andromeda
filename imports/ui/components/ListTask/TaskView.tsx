@@ -34,7 +34,7 @@ const TaskView: React.FC<Props> = ({ task }) => {
     <div className="flex drawer drawer-end" ref={ref}>
       <div className="flex-grow card bordered bg-neutral drawer-content" {...longPress}>
         <div className="card-body">
-          <div className="card-title flex justify-between">
+          <div className="card-title flex flex-col sm:flex-row sm:justify-between gap-2">
             <h4 className="text-lg">
               {task.label}
             </h4>
