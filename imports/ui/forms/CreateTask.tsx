@@ -32,7 +32,7 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
     <input className="input input-bordered" type="text" {...register("label", { required: true })} placeholder="Nom de la tache" />
     {errors.label && <Alert>Ce champs est requis</Alert>}
 
-    <select className="select select-bordered" defaultValue="" {...register('project', { required: true, minLength: 5 })}>
+    <select className="select select-bordered" defaultValue="" {...register('project', { required: true, validate: (v) => v.length > 0 })}>
       {isProjectsReady
         ? (
           <>
