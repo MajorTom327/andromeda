@@ -40,7 +40,7 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
             {projects.fetch().map((project) => <option key={project._id} value={project._id}>{project.name}</option>)}
           </>
         )
-        : (<option disabled>Chargement en cours...</option>)
+        : (<option value="" disabled>Chargement en cours...</option>)
       }
     </select>
     {errors.project && <Alert>Ce champs est requis</Alert>}
