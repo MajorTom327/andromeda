@@ -42,8 +42,7 @@ const TaskView: React.FC<Props> = ({ task }) => {
 
           </div>
 
-          <p className="text-accent">
-            {task.detail}
+          <p className="text-accent" dangerouslySetInnerHTML={{__html: task.detail.replace(/\n/g, '<br />')}}>
           </p>
 
         </div>
