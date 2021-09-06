@@ -1,5 +1,4 @@
 import { A } from 'hookrouter';
-import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import useUser from '/imports/hooks/useUser';
 
@@ -17,7 +16,6 @@ const Navbar: React.FC<Props> = ({ }) => {
           <A href="/projects" className="btn btn-ghost btn-sm rounded-btn">Mes projets</A>
           <A href="/calendar" className="btn btn-ghost btn-sm rounded-btn">Mon calendrier</A>
           <A href="/profil" className="btn btn-ghost btn-sm rounded-btn">Mon profil</A>
-          <button className="btn btn-ghost btn-sm rounded-btn" onClick={() => Meteor.logout()}>Se déconnecter</button>
         </div>
       )}
     </div>
