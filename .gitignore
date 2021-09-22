@@ -178,6 +178,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+yarn.lock
 
 ### VisualStudioCode ###
 .vscode/*
@@ -195,4 +196,4 @@ dist
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/meteorjs,macos,visualstudiocode,linux,node
+# End of https://www.toptal.com/developers/gitignore/api/meteorjs,macos,visualstudiocode,linux,nodeyarn.lock

@@ -1,10 +1,10 @@
-import { useClickAway } from 'ahooks';
 import React, { useRef, useState } from 'react';
-import useTasks from '../../../hooks/useTasks';
-import ListActions from '../ListActions';
-import ITask from '/imports/api/types/Task';
+import { formatDateFR } from '../../helpers/date';
 import useLongPress from '/imports/hooks/useLongPress';
-import useProject from '/imports/hooks/useProject';
+import { useClickAway } from 'ahooks';
+import ListActions from './ListActions';
+import useTasks from '/imports/hooks/useTasks';
+import ITask from '../../api/types/Task';
 
 interface ITaskProps extends Omit<ITask, '_id'> {
   _id: string
@@ -14,12 +14,9 @@ interface Props {
   task: ITaskProps
 }
 
-
-const TaskView: React.FC<Props> = ({ task }) => {
-  const [ready, project] = useProject(task.project);
-  const {handleRemoveTask} = useTasks();
-
+const Task = ({task}: Props) => {
   const [isOptionEnabled, setIsOptionEnabled] = useState<boolean>(false);
+  const {handleRemoveTask} = useTasks();
   const ref = useRef<HTMLDivElement>();
 
   const longPress = useLongPress(
@@ -35,28 +32,29 @@ const TaskView: React.FC<Props> = ({ task }) => {
     setIsOptionEnabled(false);
   }, ref);
 
-  const handleCancel = () => setIsOptionEnabled(false);
   const handleRemove = () => handleRemoveTask(task._id)
+  const handleCancel = () => setIsOptionEnabled(false);
 
   return (
     <div className="flex drawer drawer-end" ref={ref}>
-      <div className="flex-grow card bordered bg-neutral drawer-content" {...longPress}>
+      <div className="flex-grow card bordered bg-neutral drawer-content"  {...longPress}>
         <div className="card-body">
           <div className="card-title flex flex-col sm:flex-row sm:justify-between gap-2">
             <h4 className="text-lg">
               {task.label}
             </h4>
-            {ready ? <h5 className="badge badge-outline">{project?.name}</h5> : (<div>Chargement en cours...</div>)}
+            <h5 className="badge text-purple-400">{formatDateFR(task.date)}</h5>
+
           </div>
+
           <div className="text-accent" dangerouslySetInnerHTML={{__html: task.detail.replace(/\n/g, '<br />')}}></div>
+
         </div>
+
       </div>
       {isOptionEnabled && (<ListActions onRemove={handleRemove} onCancel={handleCancel}/>)}
     </div>
-  );
+  )
 }
 
-TaskView.defaultProps = {
-};
-
-export default TaskView;
+export default Task
