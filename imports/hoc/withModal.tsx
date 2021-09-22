@@ -13,18 +13,18 @@ const withModal = (ModalChildren: any) => (Component: any) => {
     const [isShow, setShow] = useState<boolean>(false);
     return (
       <>
-      <Component {...props}/>
-      <FloatingButton onClick={() => setShow(true)}>
-        <FontAwesomeIcon icon={faPlus} />
-      </FloatingButton>
-      <Modal
-        isOpen={isShow}
-        onClose={() => setShow(false)}
-      >
-        <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
-        <ModalChildren {...props} onSubmit={() => { setShow(false) }} />
-      </Modal>
-    </>
+        <Component {...props}/>
+        <FloatingButton onClick={() => setShow(true)}>
+          <FontAwesomeIcon icon={faPlus} />
+        </FloatingButton>
+        <Modal
+          isOpen={isShow}
+          onClose={() => setShow(false)}
+        >
+          <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
+          <ModalChildren {...props} onSubmit={() => { setShow(false) }} />
+        </Modal>
+      </>
     )
   }
 
