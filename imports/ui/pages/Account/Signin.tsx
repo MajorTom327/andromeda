@@ -7,6 +7,8 @@ import { isNil } from 'ramda';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import useToast from '/imports/hooks/useToast';
+import passwordValidator from '/imports/helpers/passwordValidator';
+import Tooltip from '../../components/Tooltip';
 type Props = {
 };
 
@@ -59,12 +61,16 @@ const Signin: React.FC<Props> = ({ }) => {
           register={register('email', { required: true })}
         />
 
-        <PasswordInput
-          label={'Mot de passe'}
-          error={!isNil(errors.password)}
-          register={register('password', { required: true, minLength: 8 })}
-        // Todo: add rules for secure password + informations
-        />
+        <Tooltip
+          tip="1 caractere special, 1 lettre en majuscule, 1 lettre en minuscule, 1 nombre et une longueur minimale de 8 caracteres"
+          direction="bottom"
+        >
+          <PasswordInput
+            label={'Mot de passe'}
+            error={!isNil(errors.password)}
+            register={register('password', { required: true, minLength: 8, validate: passwordValidator })}
+          />
+        </Tooltip>
 
 
         <div className="flex justify-end gap-4">

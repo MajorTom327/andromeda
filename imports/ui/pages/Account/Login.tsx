@@ -4,6 +4,10 @@ import { useForm } from 'react-hook-form';
 import { A } from 'hookrouter';
 import Alert from '../../components/Alert';
 import Button from '../../components/Button';
+import { isNil } from 'ramda';
+import useToast from '/imports/hooks/useToast';
+import { navigate } from 'hookrouter';
+import { PasswordInput, TextInput } from '../../components/FormInput';
 
 type Props = {
 };
@@ -15,10 +19,20 @@ type UserForm = {
 
 const Login: React.FC<Props> = ({ }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<UserForm>();
-
+  const sendToast = useToast();
 
   const onSubmit = ({ username, password }: UserForm) => {
-    Meteor.loginWithPassword(username, password);
+    Meteor.loginWithPassword(username, password, (err) => {
+      if (isNil(error)) {
+        navigate('/');
+        return;
+      }
+
+      sendToast({
+        type: 'error',
+        title: 'Impossible de se connecter...'
+      });
+    });
   }
 
   return (
@@ -28,22 +42,26 @@ const Login: React.FC<Props> = ({ }) => {
           Se connecter
         </div>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-1">
-            <input className="input input-bordered" type="text" {...register('username', { required: true })} placeholder="Utilisateur" />
-            {errors.username && <Alert>Ce champs est requis</Alert>}
-          </div>
+          <TextInput
+            label="Email ou nom d'utilisateur"
+            error={!isNil(errors.username)}
+            register={register('username', { required: true })}
+          />
+          <PasswordInput
+            label="Mot de passe"
+            error={!isNil(errors.password)}
+            register={register('password', { required: true })}
+          />
 
-          <div className="flex flex-col gap-1">
-            <input className="input input-bordered" type="password" {...register('password', { required: true })} placeholder="Mot de passe" />
-            {errors.password && <Alert>Ce champs est requis</Alert>}
-          </div>
+          <div className="flex justify-between">
 
-          <div className="flex justify-end gap-4">
-            <A href="/signin" className="btn btn-ghost">S'inscrire</A>
-            <Button>Se connecter</Button>
-          </div>
-          <div className="text-center">
-            <a href="#" className="link">J'ai oublié mon mot de passe</a>
+            <A href="#" className="link">J'ai oublié mon mot de passe</A>
+
+            <div className="flex justify-end gap-4">
+              <A href="/signin" className="btn btn-ghost">S'inscrire</A>
+              <Button>Se connecter</Button>
+            </div>
+
           </div>
 
         </form>

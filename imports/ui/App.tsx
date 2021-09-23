@@ -3,8 +3,7 @@ import React, { Suspense } from 'react';
 import useUser from '../hooks/useUser';
 import Loading from './components/Loading';
 import Navbar from './components/Navbar';
-import PreventLogged from './pages/Account';
-import Offline from './pages/Offline';
+import NotLoggedRouter from './pages/Account';
 import Router from './Router';
 
 export const App = () => {
@@ -18,9 +17,7 @@ export const App = () => {
       <Navbar />
       <div className="p-4">
         <Suspense fallback={<Loading />}>
-          <PreventLogged>
-            {online ? (<Router />) : (<Offline />)}
-          </PreventLogged>
+          {(user) ? <Router /> : <NotLoggedRouter />}
         </Suspense>
       </div>
     </div>

@@ -12,18 +12,13 @@ const routes = {
   '/signin': () => <SigninPage />
 }
 
-const PreventLogged: React.FC<Props> = ({ children }) => {
-  const user = useUser();
+const NotLoggedRouter: React.FC<Props> = ({ }) => {
   const routeResult = useRoutes(routes)
-
-  if (user) {
-    return children;
-  }
 
   return routeResult || <LoginPage />;
 }
 
-PreventLogged.defaultProps = {
+NotLoggedRouter.defaultProps = {
 };
 
-export default PreventLogged;
+export default NotLoggedRouter;
