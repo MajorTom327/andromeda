@@ -8,12 +8,14 @@ import PreventEmpty from '../../components/PreventEmpty';
 import ProjectCard from '../../components/ProjectCard';
 import CreateProject from '../../forms/CreateProject';
 import useAllProjects from '/imports/hooks/useAllProjects';
+import IProject from '../../../api/types/Project';
 
 type Props = {
 };
 
 const Projects: React.FC<Props> = ({ }) => {
   const [isReady, projects] = useAllProjects();
+  const sortProjectByName = (a: IProject, b: IProject) => a.name.localeCompare(b.name)
 
   return (<>
     <Container>
@@ -21,7 +23,7 @@ const Projects: React.FC<Props> = ({ }) => {
       {isReady ? (
         <PreventEmpty count={projects.count()}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {projects.fetch().map((project) => (
+            {projects.fetch().sort(sortProjectByName).map((project) => (
               <A className="link_" href={`/projects/${project._id}`} key={project._id}>
                 <ProjectCard project={project} />
               </A>
