@@ -21,7 +21,6 @@ const withModal = (ModalChildren: any) => (Component: any) => {
           isOpen={isShow}
           onClose={() => setShow(false)}
         >
-          <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
           <ModalChildren {...props} onSubmit={() => { setShow(false) }} />
         </Modal>
       </>

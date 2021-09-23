@@ -21,14 +21,16 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
   const [isProjectsReady, projects] = useAllProjects();
 
   const onSubmitHandler = (value: ITask) => {
-    Meteor.call('tasks.create', value, (err, id?: string) => {
+    Meteor.call('tasks.create', value, (err: any, id?: string) => {
       if (!err) {
         onSubmit(id);
       }
     })
   }
 
-  return (<div className="flex flex-col gap-3">
+  return (
+  <div className="flex flex-col gap-3">
+    <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
     <input className="input input-bordered" type="text" {...register("label", { required: true })} placeholder="Nom de la tache" />
     {errors.label && <Alert>Ce champs est requis</Alert>}
 
