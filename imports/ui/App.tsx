@@ -1,8 +1,9 @@
 import { useNetwork } from 'ahooks';
-import React from 'react';
+import React, { Suspense } from 'react';
 import useUser from '../hooks/useUser';
+import Loading from './components/Loading';
 import Navbar from './components/Navbar';
-import Login from './pages/Login';
+import PreventLogged from './pages/Account';
 import Offline from './pages/Offline';
 import Router from './Router';
 
@@ -16,8 +17,11 @@ export const App = () => {
     <div>
       <Navbar />
       <div className="p-4">
-        {!user ? <Login /> : (online ? (<Router />) : (<Offline />))}
-
+        <Suspense fallback={<Loading />}>
+          <PreventLogged>
+            {online ? (<Router />) : (<Offline />)}
+          </PreventLogged>
+        </Suspense>
       </div>
     </div>
   );

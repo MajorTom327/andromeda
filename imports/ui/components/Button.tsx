@@ -4,7 +4,7 @@ import React from 'react';
 
 type Props = {
   type?: 'default' | 'danger' | 'success' | 'info',
-  onClick: () => void
+  onClick?: () => void
 };
 
 const Button: React.FC<Props> = ({ children, onClick, type }) => {

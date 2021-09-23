@@ -42,7 +42,7 @@ const Profil: React.FC<Props> = ({ }) => {
         {errors.password_2 && <Alert>Ce champs est requis et doit être le même mot de passe.</Alert>}
 
         <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Changer le mot de passe</Button>
-        <button className="btn btn-ghost btn-sm rounded-btn" onClick={() => Meteor.logout()}>Se déconnecter</button>
+        <button className="btn rounded-btn" onClick={() => Meteor.logout()}>Se déconnecter</button>
       </div>
     </div>
   </div>);

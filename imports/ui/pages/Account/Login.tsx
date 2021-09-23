@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Alert from '../components/Alert';
-import Button from '../components/Button';
+import { A } from 'hookrouter';
+import Alert from '../../components/Alert';
+import Button from '../../components/Button';
 
 type Props = {
 };
@@ -17,10 +18,7 @@ const Login: React.FC<Props> = ({ }) => {
 
 
   const onSubmit = ({ username, password }: UserForm) => {
-
-
     Meteor.loginWithPassword(username, password);
-
   }
 
   return (
@@ -29,7 +27,7 @@ const Login: React.FC<Props> = ({ }) => {
         <div className="card-title text-center text-lg font-semibold">
           Se connecter
         </div>
-        <div className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-1">
             <input className="input input-bordered" type="text" {...register('username', { required: true })} placeholder="Utilisateur" />
             {errors.username && <Alert>Ce champs est requis</Alert>}
@@ -40,10 +38,15 @@ const Login: React.FC<Props> = ({ }) => {
             {errors.password && <Alert>Ce champs est requis</Alert>}
           </div>
 
-          <Button onClick={handleSubmit(onSubmit)}>
-            Se connecter
-          </Button>
-        </div>
+          <div className="flex justify-end gap-4">
+            <A href="/signin" className="btn btn-ghost">S'inscrire</A>
+            <Button>Se connecter</Button>
+          </div>
+          <div className="text-center">
+            <a href="#" className="link">J'ai oublié mon mot de passe</a>
+          </div>
+
+        </form>
       </div>
     </div>
   );
