@@ -78,8 +78,6 @@ const Signin: React.FC<Props> = ({ }) => {
           <Button>S'inscrire</Button>
         </div>
 
-
-
       </form>
 
     </Card>

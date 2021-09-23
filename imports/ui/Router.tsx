@@ -21,8 +21,6 @@ const routes = {
 const Router: React.FC<Props> = ({ }) => {
   const routeResult = useRoutes(routes);
 
-  console.log(routeResult);
-
   return (routeResult || (<NotFound />));
 }
 
