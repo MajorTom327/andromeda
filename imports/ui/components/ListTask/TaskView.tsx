@@ -5,15 +5,9 @@ import ListActions from '../ListActions';
 import ITask from '/imports/api/types/Task';
 import useLongPress from '/imports/hooks/useLongPress';
 import useProject from '/imports/hooks/useProject';
-
-interface ITaskProps extends Omit<ITask, '_id'> {
-  _id: string
-}
-
 interface Props {
-  task: ITaskProps
+  task: ITask
 }
-
 
 const TaskView: React.FC<Props> = ({ task }) => {
   const [ready, project] = useProject(task.project);

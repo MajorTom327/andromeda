@@ -5,13 +5,8 @@ import { useClickAway } from 'ahooks';
 import ListActions from './ListActions';
 import useTasks from '/imports/hooks/useTasks';
 import ITask from '../../api/types/Task';
-
-interface ITaskProps extends Omit<ITask, '_id'> {
-  _id: string
-}
-
 interface Props {
-  task: ITaskProps
+  task: ITask
 }
 
 const Task = ({task}: Props) => {
