@@ -1,22 +1,16 @@
 import { DateTime } from 'luxon';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import withModal from '../../hoc/withModal';
 import Container from '../components/Container';
 import ListTask from '../components/ListTask';
 import CreateTask from '../forms/CreateTask';
+import useCurrentDate from '/imports/hooks/useCurrentDate';
 
 type Props = {
 };
 
-const Home: React.FC<Props> = ({ }) => {
-  const [currentDate, setCurrentDate] = useState(DateTime.local())
-
-  useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentDate(DateTime.local());
-  }, 1000);
-  return () => clearInterval(interval);
-}, []);
+const Home: React.FC<Props> = ({}) => {
+  const currentDate = useCurrentDate();
 
   return (
     <Container>
