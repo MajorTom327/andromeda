@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import Button from '../components/Button';
 import { IProject } from '/imports/api/types/Project';
 
@@ -22,7 +22,9 @@ const CreateProject: React.FC<Props> = ({ onSubmit }) => {
       }
     });
   }
-  return (<div className="flex flex-col gap-3">
+  return (
+  <div className="flex flex-col gap-3">
+    <h1 className="text-center text-lg font-semibold">Création d'un projet</h1>
     <input className="input input-bordered" type="text" {...register('name', { required: true })} placeholder="Nom du projet" />
 
     <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Valider</Button>

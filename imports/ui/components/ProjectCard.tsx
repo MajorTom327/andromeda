@@ -7,9 +7,9 @@ type Props = {
 
 const ProjectCard: React.FC<Props> = ({ project }) => {
   return (
-    <div className="card bordered shadow-2xl">
-      <div className="card-body">
-        <div className="card-title text-center">{project.name}</div>
+    <div className="card bordered shadow trans hover:underline transition-transform transform hover:-translate-y-1">
+      <div className="card-body bg-neutral">
+        <div className="text-lg font-semibold uppercase text-center">{project.name}</div>
       </div>
     </div>
   );
