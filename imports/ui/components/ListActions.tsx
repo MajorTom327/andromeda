@@ -10,7 +10,7 @@ interface Props {
   children: ReactNode
 }
 
-const ListActions = ({ onRemove, children}: Props) => {
+const ListActions = ({ onRemove, children }: Props) => {
   const [isOptionEnabled, setIsOptionEnabled] = useState<boolean>(false);
   const uuid = uuidv4();
 
@@ -30,12 +30,12 @@ const ListActions = ({ onRemove, children}: Props) => {
   }, ref);
   const handleCancel = () => setIsOptionEnabled(false);
   return (
-    <div className="base-200 drawer drawer-end" ref={ref}>
-      <input id={`drawer-actions-${uuid}`} type="checkbox" className="drawer-toggle" checked={isOptionEnabled} onChange={() => {}}/>
+    <div className="base-200 drawer drawer-end overflow-x-hidden" ref={ref}>
+      <input id={`drawer-actions-${uuid}`} type="checkbox" className="drawer-toggle" checked={isOptionEnabled} onChange={() => { }} />
       <div className="flex flex-col card bordered bg-neutral drawer-content"  {...longPress}>
         {children}
       </div>
-      <div className={'drawer-side'}>
+      <div className={'drawer-side overflow-x-hidden'}>
         <label htmlFor={`drawer-actions-${uuid}`} className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
           <li>
