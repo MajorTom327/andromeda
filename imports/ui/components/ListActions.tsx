@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useClickAway } from 'ahooks';
 import React, { ReactNode, useRef, useState } from 'react';
 import useLongPress from '/imports/hooks/useLongPress';
+import Card from './Card';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
@@ -32,9 +33,12 @@ const ListActions = ({ onRemove, children }: Props) => {
   return (
     <div className="base-200 drawer drawer-end overflow-x-hidden" ref={ref}>
       <input id={`drawer-actions-${uuid}`} type="checkbox" className="drawer-toggle" checked={isOptionEnabled} onChange={() => { }} />
-      <div className="flex flex-col card bordered bg-neutral drawer-content"  {...longPress}>
+      <Card className="drawer-content" {...longPress}>
         {children}
-      </div>
+      </Card>
+      {/* <div className="flex flex-col card bordered bg-neutral drawer-content"  {...longPress}>
+        {children}
+      </div> */}
       <div className={'drawer-side overflow-x-hidden'}>
         <label htmlFor={`drawer-actions-${uuid}`} className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">

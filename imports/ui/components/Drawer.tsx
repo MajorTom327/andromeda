@@ -29,6 +29,9 @@ const Drawer: React.FC<Props> = ({ children, isOpen, onClose }) => {
             <li><A href="/calendar" >Mon calendrier</A></li>
             <li><A href="/profil" >Mon profil</A></li>
             <li>
+              <div className="divider"></div>
+            </li>
+            <li>
               <Button onClick={() => Meteor.logout()}>Me déconnecter</Button>
             </li>
           </ul>
