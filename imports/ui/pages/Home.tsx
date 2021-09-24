@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
-import Modal from '../components/Modal';
-import CreateTask from '../forms/CreateTask';
-import FloatingButton from '../components/FloatingButton';
+import React from 'react';
+import withModal from '../../hoc/withModal';
+import Container from '../components/Container';
 import ListTask from '../components/ListTask';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import CreateTask from '../forms/CreateTask';
+import useCurrentDate from '/imports/hooks/useCurrentDate';
 
 type Props = {
 };
 
-const Home: React.FC<Props> = ({ }) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [currentDate, setCurrentDate] = useState(DateTime.local())
-
-  useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentDate(DateTime.local());
-  }, 1000);
-  return () => clearInterval(interval);
-}, []);
+const Home: React.FC<Props> = ({}) => {
+  const currentDate = useCurrentDate();
 
   return (
-    <div className="flex flex-col gap-4">
+    <Container>
       <div className="alert">
         <div className="w-full flex justify-between text-2xl font-semibold">
           <div>Dashboard</div>
@@ -32,21 +23,11 @@ const Home: React.FC<Props> = ({ }) => {
       <div>
         <ListTask date={currentDate.toISODate()}/>
       </div>
-      <FloatingButton onClick={() => setIsModalOpen(true)}>
-        <FontAwesomeIcon icon={faPlus} />
-      </FloatingButton>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      >
-        <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
-        <CreateTask onSubmit={() => { setIsModalOpen(false) }} />
-      </Modal>
-    </div>
+    </Container>
   );
 }
 
 Home.defaultProps = {
 };
 
-export default Home;
+export default withModal(CreateTask)(Home);
