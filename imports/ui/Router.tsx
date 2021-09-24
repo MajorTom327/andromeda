@@ -22,9 +22,8 @@ const routes = {
 
 const Router: React.FC<Props> = ({ }) => {
   const routeResult = useRoutes(routes);
-  return (<Suspense fallback={<Loading />}>
-    {routeResult || (<NotFound />)}
-  </Suspense>);
+
+  return (routeResult || (<NotFound />));
 }
 
 Router.defaultProps = {
