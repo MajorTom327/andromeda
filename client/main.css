@@ -3,6 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import './css/input';
+@import './css/markdown';
 
 body {
   @apply select-none;
