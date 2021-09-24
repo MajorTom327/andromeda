@@ -1,5 +1,5 @@
 import { defaultTo } from 'ramda';
-import Swal from 'sweetalert2';
+import Swal, { SweetAlertResult } from 'sweetalert2';
 
 type ToastType = {
   title: string
@@ -8,8 +8,8 @@ type ToastType = {
 }
 
 export const useToast = () => {
-  return ({ title, type, timer }: ToastType): void => {
-    Swal.fire({
+  return ({ title, type, timer }: ToastType): Promise<SweetAlertResult<any>> => {
+    return Swal.fire({
       title: title,
       icon: type,
       timer: defaultTo(5000, timer),

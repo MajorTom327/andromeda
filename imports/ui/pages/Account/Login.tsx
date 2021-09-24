@@ -55,7 +55,7 @@ const Login: React.FC<Props> = ({ }) => {
 
           <div className="flex justify-between">
 
-            <A href="#" className="link">J'ai oublié mon mot de passe</A>
+            <A href="/ask-password" className="link">J'ai oublié mon mot de passe</A>
 
             <div className="flex justify-end gap-4">
               <A href="/signin" className="btn btn-ghost">S'inscrire</A>
