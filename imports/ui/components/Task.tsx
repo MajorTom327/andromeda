@@ -14,17 +14,15 @@ const Task = ({ task }: Props) => {
 
   return (
     <ListActions onRemove={handleRemove}>
-      <div className="card-body">
-        <div className="card-title flex flex-col sm:flex-row sm:justify-between gap-2">
-          <h4 className="text-lg">
-            {task.label}
-          </h4>
-          <h5 className="badge badge-outline">{formatDateFR(task.date)}</h5>
+      <div className="card-title flex flex-col sm:flex-row sm:justify-between gap-2">
+        <h4 className="text-lg">
+          {task.label}
+        </h4>
+        <h5 className="badge badge-outline">{formatDateFR(task.date)}</h5>
 
-        </div>
-
-        <div className="text-accent" dangerouslySetInnerHTML={{ __html: task.detail.replace(/\n/g, '<br />') }}></div>
       </div>
+
+      <div className="text-accent" dangerouslySetInnerHTML={{ __html: task.detail.replace(/\n/g, '<br />') }}></div>
     </ListActions>
   )
 }
