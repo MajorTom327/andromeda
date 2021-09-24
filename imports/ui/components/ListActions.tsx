@@ -36,9 +36,6 @@ const ListActions = ({ onRemove, children }: Props) => {
       <Card className="drawer-content" {...longPress}>
         {children}
       </Card>
-      {/* <div className="flex flex-col card bordered bg-neutral drawer-content"  {...longPress}>
-        {children}
-      </div> */}
       <div className={'drawer-side overflow-x-hidden'}>
         <label htmlFor={`drawer-actions-${uuid}`} className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
