@@ -24,6 +24,7 @@ const Drawer: React.FC<Props> = ({ children, isOpen, onClose }) => {
           <label className="drawer-overlay" onClick={onClose}></label>
           <ul className="menu p-4 overflow-y-auto w-1/3 bg-base-100 text-base-content gap-2">
             <li><A href="/">Mes tâches</A></li>
+            <li><A href="/daily">Daily</A></li>
             <li><A href="/projects" >Mes projets</A></li>
             <li><A href="/calendar" >Mon calendrier</A></li>
             <li><A href="/profil" >Mon profil</A></li>
