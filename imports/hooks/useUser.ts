@@ -2,9 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 
 export const useUser = () => useTracker(() => {
-  const userId = Meteor.userId()
+  const user = Meteor.user();
 
-  return userId;
+  return user;
 })
 
 export default useUser;

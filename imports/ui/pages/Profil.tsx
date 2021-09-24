@@ -3,18 +3,20 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Alert from '../components/Alert';
 import Button from '../components/Button';
+import useToast from '/imports/hooks/useToast';
 
 type Props = {
 };
 
 const Profil: React.FC<Props> = ({ }) => {
   const { register, handleSubmit, formState: { errors }, getValues, reset } = useForm();
+  const sendToast = useToast();
 
   const onSubmitHandler = ({ password }) => {
 
     Meteor.call('account.setpassword', { password }, (err) => {
       if (err) {
-        window.alert("Quelque chose ne va pas...");
+        sendToast({ title: "Quelque chose ne va pas...", type: "error" })
         console.log(err);
       } else {
         reset({});
@@ -27,6 +29,17 @@ const Profil: React.FC<Props> = ({ }) => {
     const { password } = getValues();
 
     return password === value
+  }
+
+  const onLogoutHandler = () => {
+    Meteor.logoutOtherClients((err) => {
+      if (err) {
+        sendToast({ title: "Une erreur est survenue lors de la déconnexion", type: "error" })
+        console.log(err);
+      } else {
+        sendToast({ type: 'success', title: "Vous êtes déconnecté" });
+      }
+    })
   }
 
   return (<div className="flex justify-center">
@@ -42,7 +55,7 @@ const Profil: React.FC<Props> = ({ }) => {
         {errors.password_2 && <Alert>Ce champs est requis et doit être le même mot de passe.</Alert>}
 
         <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Changer le mot de passe</Button>
-        <button className="btn rounded-btn" onClick={() => Meteor.logout()}>Se déconnecter</button>
+        <button className="btn rounded-btn" onClick={onLogoutHandler}>Se déconnecter de tous les autres appareils</button>
       </div>
     </div>
   </div>);

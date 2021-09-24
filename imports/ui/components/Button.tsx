@@ -4,10 +4,11 @@ import React from 'react';
 
 type Props = {
   type?: 'default' | 'danger' | 'success' | 'info',
-  onClick?: () => void
+  onClick?: () => void,
+  className?: string,
 };
 
-const Button: React.FC<Props> = ({ children, onClick, type }) => {
+const Button: React.FC<Props> = ({ children, onClick, type, className }) => {
 
   const classes = classNames(
     'btn',
@@ -16,7 +17,9 @@ const Button: React.FC<Props> = ({ children, onClick, type }) => {
       'btn-error': type === 'danger',
       'btn-success': type === 'success',
       'btn-info': type === 'info',
-    })
+    },
+    className
+  )
   return (<button className={classes} onClick={onClick}>{children}</button>);
 }
 

@@ -1,22 +1,47 @@
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { A } from 'hookrouter';
+import { Meteor } from 'meteor/meteor';
+import { compose, path, propOr } from 'ramda';
 import React from 'react';
+import Button from './Button';
+import gravatar from '/imports/helpers/gravatar';
 import useUser from '/imports/hooks/useUser';
 
 type Props = {
+  onToggleDrawer: () => {}
 };
 
-const Navbar: React.FC<Props> = ({ }) => {
+const getAvatar = compose(
+  (email: string) => gravatar(email),
+  propOr('', 'address'),
+  path<Meteor.UserEmail | undefined>(['emails', 0]),
+);
+
+const Navbar: React.FC<Props> = ({ onToggleDrawer }) => {
   const user = useUser();
+
+  const avatarUrl = getAvatar(user);
+
   return (
-    <div className="navbar bg-neutral text-neutral-content w-full flex flex-col sm:flex-row justify-center sm:justify-between">
-      <A href="/" className="font-bold text-lg text-center">Andromeda</A>
+    <div className="navbar bg-neutral text-neutral-content w-full">
       {user && (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center text-center sm:text-left">
-          <A href="/" className="btn btn-ghost btn-sm rounded-btn">Mes tâches</A>
-          <A href="/projects" className="btn btn-ghost btn-sm rounded-btn">Mes projets</A>
-          <A href="/calendar" className="btn btn-ghost btn-sm rounded-btn">Mon calendrier</A>
-          <A href="/profil" className="btn btn-ghost btn-sm rounded-btn">Mon profil</A>
-        </div>
+        <Button className="flex-none hidden lg:flex" onClick={onToggleDrawer}>
+          <FontAwesomeIcon icon={faBars} />
+        </Button>
+      )}
+      <A href="/" className="flex-1 px-2 mx-2 font-bold text-lg text-center">Andromeda</A>
+      {user && (
+        <A href="/profil" className="flex-none gap-4 btn btn-ghost">
+          <div>
+            {user.username}
+          </div>
+          <div className="avatar">
+            <div className="rounded-full w-10 h-10">
+              <img src={avatarUrl} alt="" />
+            </div>
+          </div>
+        </A>
       )}
     </div>
   );
