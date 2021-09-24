@@ -26,7 +26,7 @@ const Navbar: React.FC<Props> = ({ onToggleDrawer }) => {
   return (
     <div className="navbar bg-neutral text-neutral-content w-full">
       {user && (
-        <Button className="flex-none hidden lg:flex" onClick={onToggleDrawer}>
+        <Button className="flex text-xl" onClick={onToggleDrawer}>
           <FontAwesomeIcon icon={faBars} />
         </Button>
       )}

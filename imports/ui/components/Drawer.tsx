@@ -14,7 +14,7 @@ const Drawer: React.FC<Props> = ({ children, isOpen, onClose }) => {
 
 
   return (
-    <div className="drawer h-screen">
+    <div className="drawer" style={{ height: `calc(100vh - 64px)` }}>
       <input type="checkbox" id="drawer-toggle" className="drawer-toggle" checked={isOpen} readOnly />
       <div className="drawer-content py-4">
         {children}
