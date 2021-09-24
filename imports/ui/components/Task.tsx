@@ -3,6 +3,7 @@ import ITask from '../../api/types/Task';
 import { formatDateFR } from '../../helpers/date';
 import ListActions from './ListActions';
 import useTasks from '/imports/hooks/useTasks';
+import ReactMarkdown from 'react-markdown'
 interface Props {
   task: ITask
 }
@@ -22,7 +23,12 @@ const Task = ({ task }: Props) => {
 
       </div>
 
-      <div className="text-accent" dangerouslySetInnerHTML={{ __html: task.detail.replace(/\n/g, '<br />') }}></div>
+
+      <div className="text-accent markdown">
+        <ReactMarkdown>
+          {task.detail}
+        </ReactMarkdown>
+      </div>
     </ListActions>
   )
 }
