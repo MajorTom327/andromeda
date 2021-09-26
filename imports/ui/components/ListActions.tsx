@@ -32,7 +32,7 @@ const ListActions = ({ onRemove, children }: Props) => {
   const handleCancel = () => setIsOptionEnabled(false);
   return (
     <div className="base-200 drawer drawer-end overflow-x-hidden" ref={ref}>
-      <input id={`drawer-actions-${uuid}`} type="checkbox" className="drawer-toggle" checked={isOptionEnabled} onChange={() => { }} />
+      <input readOnly id={`drawer-actions-${uuid}`} type="checkbox" className="drawer-toggle" checked={isOptionEnabled} onChange={() => { }} />
       <Card className="drawer-content" {...longPress}>
         {children}
       </Card>
