@@ -17,5 +17,6 @@ describe('Andromeda', function () {
     it('server is not client', function () {
       assert.strictEqual(Meteor.isClient, false);
     });
+    import('./server');
   }
 });

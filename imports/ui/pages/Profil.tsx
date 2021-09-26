@@ -79,6 +79,7 @@ const Profil: React.FC<Props> = ({ }) => {
             <h2 className="text-2xl">Sécurité</h2>
           </div>
           <Button className="btn rounded-btn" onClick={onLogoutHandler}>Se déconnecter de tous les autres appareils</Button>
+          <Button className="btn rounded-btn" onClick={() => Meteor.logout()}>Se déconnecter</Button>
         </Card>
 
       </div>

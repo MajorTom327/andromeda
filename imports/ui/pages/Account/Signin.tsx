@@ -39,6 +39,9 @@ const Signin: React.FC<Props> = ({ }) => {
         sendToast({ title: 'L\'adresse Email est déjà utilisée !', type: 'error' });
       } else if (reason === 'Username already exists.') {
         sendToast({ title: 'Le nom d\'utilisateur est déjà utilisé !', type: 'error' });
+      } else {
+        sendToast({ title: 'Impossible de se creer un compte', type: 'error' });
+
       }
     })
   }

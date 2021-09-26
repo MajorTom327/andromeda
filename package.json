@@ -4,6 +4,7 @@
   "scripts": {
     "start": "meteor run --settings ./settings/dev.json",
     "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test:watch": "meteor test --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
@@ -32,6 +33,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.22",
     "@types/classnames": "^2.3.1",
     "@types/crypto-js": "^4.0.2",
     "@types/hookrouter": "^2.2.5",
@@ -43,6 +45,7 @@
     "@types/react-modal": "^3.12.1",
     "@types/uuid": "^8.3.1",
     "autoprefixer": "^10.3.1",
+    "chai": "^4.3.4",
     "postcss": "^8.3.5",
     "postcss-import": "^14.0.2",
     "postcss-load-config": "^3.1.0",
