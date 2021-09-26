@@ -23,10 +23,11 @@ const Login: React.FC<Props> = ({ }) => {
 
   const onSubmit = ({ username, password }: UserForm) => {
     Meteor.loginWithPassword(username, password, (err) => {
-      if (isNil(error)) {
+      if (isNil(err)) {
         navigate('/');
         return;
       }
+      console.log(err)
 
       sendToast({
         type: 'error',
