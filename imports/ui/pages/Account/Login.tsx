@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { A } from 'hookrouter';
-import Alert from '../../components/Alert';
 import Button from '../../components/Button';
 import { isNil } from 'ramda';
 import useToast from '/imports/hooks/useToast';
