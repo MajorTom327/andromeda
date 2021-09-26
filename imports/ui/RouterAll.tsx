@@ -10,8 +10,14 @@ const router = {
 }
 
 const RouterAll: React.FC<Props> = ({ children }) => {
-  const routeMatch = useRoutes(router)
-  return <>{routeMatch || children}</>
+  const routeMatch = useRoutes(router);
+
+  if (!routeMatch) {
+    return children;
+  }
+
+  return routeMatch;
+  // return <>{routeMatch || children}</>
 }
 
 RouterAll.defaultProps = {

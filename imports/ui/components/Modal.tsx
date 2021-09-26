@@ -15,7 +15,7 @@ const Modal: React.FC<Props> = ({ children, isOpen, onClose, actions }) => {
 
   return (
     <>
-      <input id={`modal-${uuid}`} type="checkbox" className="modal-toggle" checked={isOpen} />
+      <input readOnly id={`modal-${uuid}`} type="checkbox" className="modal-toggle" checked={isOpen} />
       <div className="modal">
         <div className="modal-box">
           <div className="float-right relative -top-2 -right-2">

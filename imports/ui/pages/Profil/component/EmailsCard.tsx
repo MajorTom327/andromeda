@@ -54,7 +54,7 @@ const EmailsCard: React.FC<Props> = ({ }) => {
         <h2 className="text-2xl">Mes emails</h2>
       </div>
 
-      <table className="table">
+      <table className="table hidden lg:table">
         <thead>
           <tr>
             <th>Email</th>
@@ -71,6 +71,17 @@ const EmailsCard: React.FC<Props> = ({ }) => {
         </tbody>
 
       </table>
+
+      <div className="block w-full lg:hidden">
+        {(user?.emails || []).map((email, index) => (
+          <div key={index} className="flex items-center mb-2 gap-2">
+            <div>{email.address}</div>
+            <div>
+              <BadgeStatus email={email} />
+            </div>
+          </div>
+        ))}
+      </div>
     </Card>
   );
 }
