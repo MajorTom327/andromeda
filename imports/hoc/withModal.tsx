@@ -13,7 +13,7 @@ const withModal = (ModalChildren: any) => (Component: any) => {
     const [isShow, setShow] = useState<boolean>(false);
     return (
       <>
-        <Component {...props}/>
+        <Component {...props} />
         <FloatingButton onClick={() => setShow(true)}>
           <FontAwesomeIcon icon={faPlus} />
         </FloatingButton>
