@@ -197,3 +197,4 @@ yarn.lock
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/meteorjs,macos,visualstudiocode,linux,node
+start.sh
