@@ -6,5 +6,11 @@
   },
   "mails": {
     "from": "postmaster@mail.styx-sys.com"
+  },
+  "accounts": {
+    "users": [],
+    "domains": [
+      "valentin-thomas.com"
+    ]
   }
 }
