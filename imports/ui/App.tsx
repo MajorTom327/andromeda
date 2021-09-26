@@ -1,4 +1,3 @@
-import { useNetwork } from 'ahooks';
 import React, { Suspense, useState } from 'react';
 import useUser from '../hooks/useUser';
 import Drawer from './components/Drawer';
@@ -6,11 +5,11 @@ import Loading from './components/Loading';
 import Navbar from './components/Navbar';
 import NotLoggedRouter from './pages/Account';
 import Router from './Router';
+import RouterAll from './RouterAll';
 
 export const App = () => {
   const user = useUser();
   const [isOpen, setIsOpen] = useState(false)
-
 
   return (
     <div>
@@ -18,7 +17,9 @@ export const App = () => {
       <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <div className="p-4">
           <Suspense fallback={<Loading />}>
-            {(user) ? <Router /> : <NotLoggedRouter />}
+            <RouterAll>
+              {(user) ? <Router /> : <NotLoggedRouter />}
+            </RouterAll>
           </Suspense>
         </div>
       </Drawer>
