@@ -26,9 +26,9 @@ const ListTask: React.FC<Props> = ({ date }) => {
   }, [taskReady])
 
   const onSearch = (value: string) => {
-    const pattern = new RegExp(`.*${value.toLowerCase()}.*`, 'g')
+    const pattern = new RegExp(`.*${value}.*`, 'gi')
     const _tasks = originalTasks.filter(({ label, detail }) => {
-      return label.toLocaleLowerCase().match(pattern) || detail.toLocaleLowerCase().match(pattern)
+      return label.match(pattern) || detail.match(pattern)
     })
     setAllTasks(_tasks);
   }
@@ -39,7 +39,7 @@ const ListTask: React.FC<Props> = ({ date }) => {
   return (
     <div className="flex flex-col gap-4">
       <PreventEmpty count={originalTasks.length}>
-        <FormSearch onSearch={onSearch}/>
+        <FormSearch onSearch={onSearch} />
         {allTasks.map((task) => <TaskView key={task._id} task={task} />)}
       </PreventEmpty>
 
