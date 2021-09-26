@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { A, navigate } from 'hookrouter';
 import { useForm } from 'react-hook-form';
 import { EmailInput, PasswordInput, TextInput } from '../../components/FormInput';
-import { isNil } from 'ramda';
+import { equals, isNil } from 'ramda';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import useToast from '/imports/hooks/useToast';
@@ -16,12 +16,13 @@ type SignInForm = {
   username: string
   email: string
   password: string;
+  password_2: string;
 }
 
 const Signin: React.FC<Props> = ({ }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<SignInForm>();
+  const { register, handleSubmit, getValues, formState: { errors } } = useForm<SignInForm>();
 
-  const onSigninHandler = ({ username, email, password }) => {
+  const onSigninHandler = ({ username, email, password }: SignInForm) => {
     const sendToast = useToast();
 
     Accounts.createUser({
@@ -30,7 +31,7 @@ const Signin: React.FC<Props> = ({ }) => {
       password,
     }, (error) => {
       if (isNil(error)) {
-        navigate('/login')
+        navigate('/')
       }
       const { reason } = error as { reason: string };
 
@@ -40,7 +41,13 @@ const Signin: React.FC<Props> = ({ }) => {
         sendToast({ title: 'Le nom d\'utilisateur est déjà utilisé !', type: 'error' });
       }
     })
+  }
 
+  const validatePasswordWithRepeat = (value: string) => {
+    if (!passwordValidator(value)) return false;
+
+    const { password } = getValues();
+    return equals(value, password);
 
   }
   return (
@@ -69,6 +76,16 @@ const Signin: React.FC<Props> = ({ }) => {
             label={'Mot de passe'}
             error={!isNil(errors.password)}
             register={register('password', { required: true, minLength: 8, validate: passwordValidator })}
+          />
+        </Tooltip>
+        <Tooltip
+          tip="1 caractere special, 1 lettre en majuscule, 1 lettre en minuscule, 1 nombre et une longueur minimale de 8 caracteres"
+          direction="bottom"
+        >
+          <PasswordInput
+            label={'Mot de passe'}
+            error={!isNil(errors.password_2)}
+            register={register('password_2', { required: true, minLength: 8, validate: validatePasswordWithRepeat })}
           />
         </Tooltip>
 
