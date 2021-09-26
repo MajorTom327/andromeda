@@ -7,9 +7,12 @@ type Props = {
 
 const FloatingButton: React.FC<Props> = ({ children, onClick }) => {
   return (
-    <button className="shadow-2xl fixed bottom-8 right-4 btn btn-circle btn-lg text-4xl bordered border-base-content" onClick={onClick}>
-      {children}
-    </button>
+    <div className="sticky bottom-8 flex justify-end z-50">
+      <button className="shadow-2xl  btn btn-circle btn-lg text-4xl bordered border-base-content" onClick={onClick}>
+        {children}
+      </button>
+
+    </div>
   );
 }
 
