@@ -5,7 +5,6 @@ import Loading from './components/Loading';
 import Navbar from './components/Navbar';
 import NotLoggedRouter from './pages/Account';
 import Router from './Router';
-import RouterAll from './RouterAll';
 
 export const App = () => {
   const user = useUser();
@@ -17,9 +16,7 @@ export const App = () => {
       <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <div className="p-4">
           <Suspense fallback={<Loading />}>
-            <RouterAll>
-              {(user) ? <Router /> : <NotLoggedRouter />}
-            </RouterAll>
+            {(user) ? <Router /> : <NotLoggedRouter />}
           </Suspense>
         </div>
       </Drawer>

@@ -7,6 +7,7 @@ type Props = {
 };
 
 const HomePage = lazy(() => import('./pages/Home'));
+const VerifyPage = lazy(() => import('./pages/Verify'));
 const Daily = lazy(() => import('./pages/Daily'));
 const ProjectsPage = lazy(() => import('./pages/project/Projects'));
 const ProjectPage = lazy(() => import('./pages/project/Project'));
@@ -15,6 +16,7 @@ const ProfilPage = lazy(() => import('./pages/Profil'));
 
 const routes = {
   '/': () => <HomePage />,
+  '/verify/:token': ({ token }: { token: string }) => <VerifyPage token={token} />,
   '/daily': () => <Daily />,
   '/projects': () => <ProjectsPage />,
   '/projects/:id': ({ id }: { id: string }) => <ProjectPage id={id} />,
