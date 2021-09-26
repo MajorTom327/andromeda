@@ -19,7 +19,7 @@ const routes = {
   '/verify/:token': ({ token }: { token: string }) => <VerifyPage token={token} />,
   '/daily': () => <Daily />,
   '/projects': () => <ProjectsPage />,
-  '/projects/:id': ({ id }: { id: string }) => <ProjectPage id={id} />,
+  '/projects/:id': ({ id }: { id: string }) => <ProjectPage projectId={id} />,
   '/calendar': () => <CalendarPage />,
   '/profil': () => <ProfilPage />
 }

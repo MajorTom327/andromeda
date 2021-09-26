@@ -9,18 +9,18 @@ import CreateTaskByProject from '../../forms/CreateTaskByProject';
 import withModal from '../../../hoc/withModal';
 
 interface Props {
-  id: string
+  projectId: string
 }
 
-const Project = ({id}: Props) => {
-  const [isReady, project] = useProject(id);
-  const [isReadyTask, tasks] = useTasksByProjectId(id)
-  if (!(isReady && isReadyTask)) return <Loading/>
+const Project = ({ projectId }: Props) => {
+  const [isReady, project] = useProject(projectId);
+  const [isReadyTask, tasks] = useTasksByProjectId(projectId)
+  if (!(isReady && isReadyTask)) return <Loading />
   return (
     <Container>
-      <Header label={project?.name || ''}/>
+      <Header label={project?.name || ''} />
       <div className="flex flex-col gap-4">
-        {tasks.map(task => <Task key={task._id} task={task}/>)}
+        {tasks.map(task => <Task key={task._id} task={task} />)}
       </div>
     </Container>
   )
