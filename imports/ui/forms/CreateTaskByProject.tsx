@@ -8,10 +8,10 @@ import ITask from '/imports/api/types/Task';
 
 type Props = {
   onSubmit: (id?: string) => void
-  id: string
+  projectId: string
 }
 
-const CreateTaskByProject: React.FC<Props> = ({ id: projectId, onSubmit }) => {
+const CreateTaskByProject: React.FC<Props> = ({ projectId, onSubmit }) => {
   const defaultValues = {
     date: DateTime.local().toISODate(),
     label: '',
@@ -22,7 +22,7 @@ const CreateTaskByProject: React.FC<Props> = ({ id: projectId, onSubmit }) => {
   });
 
   const onSubmitHandler = (value: ITask) => {
-    Meteor.call('tasks.create', {...value, project: projectId}, (err: any, id?: string) => {
+    Meteor.call('tasks.create', { ...value, project: projectId }, (err: any, id?: string) => {
       if (!err) {
         reset(defaultValues);
         onSubmit(id);
@@ -31,19 +31,19 @@ const CreateTaskByProject: React.FC<Props> = ({ id: projectId, onSubmit }) => {
   }
 
   return (
-  <div className="flex flex-col gap-3">
-    <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
-    <input className="input input-bordered" type="text" {...register("label", { required: true })} placeholder="Nom de la tache" />
-    {errors.label && <Alert>Ce champs est requis</Alert>}
+    <div className="flex flex-col gap-3">
+      <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
+      <input className="input input-bordered" type="text" {...register("label", { required: true })} placeholder="Nom de la tache" />
+      {errors.label && <Alert>Ce champs est requis</Alert>}
 
-    <textarea className="textarea textarea-bordered" rows={10} {...register("detail")} placeholder="Détails de la tache" />
+      <textarea className="textarea textarea-bordered" rows={10} {...register("detail")} placeholder="Détails de la tache" />
 
-    <input className="input input-bordered" type="date" {...register("date", { required: true })} placeholder="Date de la tache" />
-    {errors.date && <Alert>Ce champs est requis</Alert>}
+      <input className="input input-bordered" type="date" {...register("date", { required: true })} placeholder="Date de la tache" />
+      {errors.date && <Alert>Ce champs est requis</Alert>}
 
 
-    <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Valider</Button>
-  </div>);
+      <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Valider</Button>
+    </div>);
 }
 
 CreateTaskByProject.defaultProps = {

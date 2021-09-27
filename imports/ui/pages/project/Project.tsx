@@ -15,6 +15,7 @@ interface Props {
 const Project = ({ projectId }: Props) => {
   const [isReady, project] = useProject(projectId);
   const [isReadyTask, tasks] = useTasksByProjectId(projectId)
+
   if (!(isReady && isReadyTask)) return <Loading />
   return (
     <Container>
