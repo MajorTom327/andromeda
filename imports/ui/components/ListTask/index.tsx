@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon';
+import { isEmpty, isNil, reject } from 'ramda';
 import React, { useEffect, useState } from 'react';
 import ITask from '../../../api/types/Task';
 import FormSearch from '../FormSearch';
@@ -13,24 +14,17 @@ type Props = {
 };
 
 const ListTask: React.FC<Props> = ({ date }) => {
-  const [taskReady, fetchTasks] = useAllTasks({ date })
-  const [originalTasks, setOriginalTasks] = useState<ITask[]>([])
-  const [allTasks, setAllTasks] = useState<ITask[]>([])
+  const [filter, setFilter] = useState<string | undefined>(undefined)
+  const [taskReady, tasks] = useAllTasks({ date }, filter);
 
-  useEffect(() => {
-    if (taskReady) {
-      const tasks = fetchTasks.fetch()
-      setOriginalTasks(tasks);
-      setAllTasks(tasks);
-    }
-  }, [taskReady])
 
   const onSearch = (value: string) => {
-    const pattern = new RegExp(`.*${value}.*`, 'gi')
-    const _tasks = originalTasks.filter(({ label, detail }) => {
-      return label.match(pattern) || detail.match(pattern)
-    })
-    setAllTasks(_tasks);
+    if (isEmpty(value)) {
+      setFilter(undefined);
+      return;
+    }
+    const pattern = value
+    setFilter(pattern);
   }
 
   if (!taskReady) {
@@ -38,11 +32,10 @@ const ListTask: React.FC<Props> = ({ date }) => {
   }
   return (
     <div className="flex flex-col gap-4">
-      <PreventEmpty count={originalTasks.length}>
-        <FormSearch onSearch={onSearch} />
-        {allTasks.map((task) => <TaskView key={task._id} task={task} />)}
+      <FormSearch onSearch={onSearch} />
+      <PreventEmpty count={tasks.length}>
+        {tasks.map((task) => <TaskView key={task._id} task={task} />)}
       </PreventEmpty>
-
     </div>
   );
 }

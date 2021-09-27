@@ -6,13 +6,26 @@ import { Mongo } from 'meteor/mongo';
 
 type Response = [
   boolean,
-  Mongo.Cursor<ITask>
+  ITask[]
 ]
 
-export const useAllTasks = (task: Partial<ITask>): Response => useTracker(() => {
+export const useAllTasks = (task: Partial<ITask>, search?: string): Response => useTracker(() => {
   const ready = Meteor.subscribe('tasks.all', task).ready();
-  const tasks = Tasks.find(task)
 
+  if (search) {
+    const tasks = Tasks.find({
+      ...task,
+      $or: [
+        { label: { $regex: new RegExp(search, 'gi') } },
+        { detail: { $regex: new RegExp(search, 'gi') } }
+      ]
+    }).fetch();
+
+    return [ready, tasks]
+
+  }
+  
+  const tasks = Tasks.find(task).fetch()
   return [ready, tasks];
 });
 

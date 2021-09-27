@@ -62,8 +62,8 @@ const Daily: React.FC<Props> = ({ }) => {
         </div>
       </Card>
       {taskReady ? (
-        <PreventEmpty count={tasks.count()}>
-          {tasks.fetch().map((task) => <TaskView key={task._id} task={task} />)}
+        <PreventEmpty count={tasks.length}>
+          {tasks.map((task) => <TaskView key={task._id} task={task} />)}
         </PreventEmpty>
       ) : (<Loading />)
       }
