@@ -9,7 +9,7 @@ import gravatar from '/imports/helpers/gravatar';
 import useUser from '/imports/hooks/useUser';
 
 type Props = {
-  onToggleDrawer: () => {}
+  onToggleDrawer: () => void
 };
 
 const getAvatar = compose(

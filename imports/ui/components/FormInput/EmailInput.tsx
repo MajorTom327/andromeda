@@ -1,11 +1,12 @@
 import React from 'react';
 import Input from './BaseInput';
+import { TFieldError } from '../../../types/reactHookFormTypes';
 
 type Props = {
   label: string
   placeholder?: string
   register: any
-  error?: boolean
+  error?: TFieldError
 };
 
 const EmailInput: React.FC<Props> = ({ label, register, error, placeholder }) => {

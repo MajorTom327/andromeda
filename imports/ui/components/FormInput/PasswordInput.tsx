@@ -1,11 +1,12 @@
 import React from 'react';
 import Input from './BaseInput';
+import { TFieldError } from '/imports/types/reactHookFormTypes';
 
 type Props = {
   label: string
   register: any
   placeholder?: string
-  error?: boolean
+  error?: TFieldError
 };
 
 const PasswordInput: React.FC<Props> = ({ label, register, error, placeholder }) => {

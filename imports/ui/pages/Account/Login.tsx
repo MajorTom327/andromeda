@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { A } from 'hookrouter';
+import { A, navigate } from 'hookrouter';
 import Button from '../../components/Button';
 import { isNil } from 'ramda';
 import useToast from '/imports/hooks/useToast';
-import { navigate } from 'hookrouter';
 import { PasswordInput, TextInput } from '../../components/FormInput';
+import { formRequire } from '../../../helpers/formValidator';
 
 type Props = {
 };
@@ -44,13 +44,13 @@ const Login: React.FC<Props> = ({ }) => {
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <TextInput
             label="Email ou nom d'utilisateur"
-            error={!isNil(errors.username)}
-            register={register('username', { required: true })}
+            error={errors.username}
+            register={register('username', formRequire())}
           />
           <PasswordInput
             label="Mot de passe"
-            error={!isNil(errors.password)}
-            register={register('password', { required: true })}
+            error={errors.password}
+            register={register('password', formRequire())}
           />
 
           <div className="flex justify-between">

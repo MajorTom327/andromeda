@@ -1,14 +1,14 @@
-import { Accounts } from 'meteor/accounts-base';
-import React, { useState } from 'react';
 import { A, navigate } from 'hookrouter';
+import { Accounts } from 'meteor/accounts-base';
+import { isNil } from 'ramda';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { EmailInput, PasswordInput, TextInput } from '../../components/FormInput';
-import { equals, isNil } from 'ramda';
-import Card from '../../components/Card';
 import Button from '../../components/Button';
-import useToast from '/imports/hooks/useToast';
-import passwordValidator from '/imports/helpers/passwordValidator';
+import Card from '../../components/Card';
+import { EmailInput, PasswordInput, TextInput } from '../../components/FormInput';
 import Tooltip from '../../components/Tooltip';
+import { passwordValidator, validatePasswordWithRepeat, formRequire, emailValidator } from '../../../helpers/formValidator';
+import useToast from '/imports/hooks/useToast';
 type Props = {
 };
 
@@ -31,7 +31,8 @@ const Signin: React.FC<Props> = ({ }) => {
       password,
     }, (error) => {
       if (isNil(error)) {
-        navigate('/')
+        navigate('/');
+        return;
       }
       const { reason } = error as { reason: string };
 
@@ -46,13 +47,6 @@ const Signin: React.FC<Props> = ({ }) => {
     })
   }
 
-  const validatePasswordWithRepeat = (value: string) => {
-    if (!passwordValidator(value)) return false;
-
-    const { password } = getValues();
-    return equals(value, password);
-
-  }
   return (
     <Card>
       <div className="card-title text-center">
@@ -62,13 +56,13 @@ const Signin: React.FC<Props> = ({ }) => {
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSigninHandler)}>
         <TextInput
           label={'Nom d\'utilisateur'}
-          error={!isNil(errors.username)}
-          register={register('username', { required: true })}
+          error={errors.username}
+          register={register('username', formRequire())}
         />
         <EmailInput
           label={'Email'}
-          error={!isNil(errors.email)}
-          register={register('email', { required: true })}
+          error={errors.email}
+          register={register('email', formRequire({validate: emailValidator}))}
         />
 
         <Tooltip
@@ -77,8 +71,8 @@ const Signin: React.FC<Props> = ({ }) => {
         >
           <PasswordInput
             label={'Mot de passe'}
-            error={!isNil(errors.password)}
-            register={register('password', { required: true, minLength: 8, validate: passwordValidator })}
+            error={errors.password}
+            register={register('password', formRequire({ minLength: 8, validate: passwordValidator }))}
           />
         </Tooltip>
         <Tooltip
@@ -86,9 +80,9 @@ const Signin: React.FC<Props> = ({ }) => {
           direction="bottom"
         >
           <PasswordInput
-            label={'Mot de passe'}
-            error={!isNil(errors.password_2)}
-            register={register('password_2', { required: true, minLength: 8, validate: validatePasswordWithRepeat })}
+            label={'Confirmer le mot de passe'}
+            error={errors.password_2}
+            register={register('password_2', { validate: validatePasswordWithRepeat(getValues) })}
           />
         </Tooltip>
 

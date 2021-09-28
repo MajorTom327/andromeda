@@ -6,6 +6,7 @@ import useAllProjects from '/imports/hooks/useAllProjects';
 import { DateTime } from 'luxon'
 import { Meteor } from 'meteor/meteor';
 import Alert from '../components/Alert';
+import { formRequire } from '../../helpers/formValidator';
 
 type Props = {
   onSubmit: (id?: string) => void
@@ -31,10 +32,10 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
   return (
   <div className="flex flex-col gap-3">
     <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
-    <input className="input input-bordered" type="text" {...register("label", { required: true })} placeholder="Nom de la tache" />
+    <input className="input input-bordered" type="text" {...register("label", formRequire())} placeholder="Nom de la tache" />
     {errors.label && <Alert>Ce champs est requis</Alert>}
 
-    <select className="select select-bordered" defaultValue="" {...register('project', { required: true, validate: (v) => v.length > 0 })}>
+    <select className="select select-bordered" defaultValue="" {...register('project', formRequire({ validate: (v: string[]) => v.length > 0 }))}>
       {isProjectsReady
         ? (
           <>
@@ -49,7 +50,7 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
 
     <textarea className="textarea textarea-bordered" rows={10} {...register("detail")} placeholder="Détails de la tache" />
 
-    <input className="input input-bordered" type="date" {...register("date", { required: true })} placeholder="Date de la tache" />
+    <input className="input input-bordered" type="date" {...register("date", formRequire())} placeholder="Date de la tache" />
     {errors.date && <Alert>Ce champs est requis</Alert>}
 
 

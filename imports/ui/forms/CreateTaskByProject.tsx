@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import Alert from '../components/Alert';
 import Button from '../components/Button';
 import ITask from '/imports/api/types/Task';
+import { formRequire } from '../../helpers/formValidator';
 
 type Props = {
   onSubmit: (id?: string) => void
@@ -33,12 +34,12 @@ const CreateTaskByProject: React.FC<Props> = ({ projectId, onSubmit }) => {
   return (
     <div className="flex flex-col gap-3">
       <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
-      <input className="input input-bordered" type="text" {...register("label", { required: true })} placeholder="Nom de la tache" />
+      <input className="input input-bordered" type="text" {...register("label", formRequire())} placeholder="Nom de la tache" />
       {errors.label && <Alert>Ce champs est requis</Alert>}
 
       <textarea className="textarea textarea-bordered" rows={10} {...register("detail")} placeholder="Détails de la tache" />
 
-      <input className="input input-bordered" type="date" {...register("date", { required: true })} placeholder="Date de la tache" />
+      <input className="input input-bordered" type="date" {...register("date", formRequire())} placeholder="Date de la tache" />
       {errors.date && <Alert>Ce champs est requis</Alert>}
 
 

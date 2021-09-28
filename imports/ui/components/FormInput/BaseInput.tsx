@@ -1,12 +1,13 @@
 import classNames from 'classnames';
 import { defaultTo } from 'ramda';
 import React from 'react';
+import { TFieldError } from '/imports/types/reactHookFormTypes';
 
 type Props = {
   label: string
   placeholder?: string
   register: any
-  error?: boolean,
+  error?: TFieldError
   type: string
 };
 
@@ -25,7 +26,7 @@ const Input: React.FC<Props> = ({ label, register, placeholder, error, type }) =
         {...register} />
       {error && (
         <label className="label">
-          <span className="label-text-alt text-error">Ce champs est requis</span>
+          <span className="label-text-alt text-error">{error?.message || 'Ce champs est requis'}</span>
         </label>
       )}
     </div>

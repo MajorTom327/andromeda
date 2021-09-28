@@ -1,11 +1,11 @@
-import { isNil } from 'ramda';
+import { A } from 'hookrouter';
+import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { A } from 'hookrouter'
+import { emailValidator, formRequire } from '../../../helpers/formValidator';
 import Button from '../../components/Button';
 import Card from '../../components/Card';
 import { EmailInput } from '../../components/FormInput';
-import { Meteor } from 'meteor/meteor';
 
 type Props = {
 };
@@ -18,8 +18,6 @@ const AskPassword: React.FC<Props> = ({ }) => {
   const { register, handleSubmit, formState: { errors, isSubmitSuccessful } } = useForm<FormAskPassword>();
 
   const onSubmit = ({ email }: FormAskPassword) => {
-    console.log(email);
-
     Meteor.call('account.askResetPassword', { email });
   }
   return (
@@ -38,9 +36,9 @@ const AskPassword: React.FC<Props> = ({ }) => {
       ) : (
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <EmailInput
-            error={!isNil(errors.email)}
+            error={errors.email}
             label="Mon adresse email"
-            register={register("email", { required: true })}
+            register={register("email", formRequire({validate: emailValidator}))}
           />
           <Button>Demander un lien de reinitialisation</Button>
         </form>

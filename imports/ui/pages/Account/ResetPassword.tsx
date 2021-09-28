@@ -1,13 +1,12 @@
 import { navigate } from 'hookrouter';
 import { Accounts } from 'meteor/accounts-base';
-import { isNil } from 'ramda';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
+import { formRequire, passwordValidator, validatePasswordWithRepeat } from '../../../helpers/formValidator';
+import useToast from '../../../hooks/useToast';
 import Button from '../../components/Button';
 import Card from '../../components/Card';
 import { PasswordInput } from '../../components/FormInput';
-import passwordValidator from '/imports/helpers/passwordValidator';
-import useToast from '../../../hooks/useToast';
 
 type Props = {
   token: string
@@ -42,11 +41,6 @@ const ResetPassword: React.FC<Props> = ({ token }) => {
     });
   }
 
-  const validateSame = (value: string) => {
-    const { password } = getValues();
-    return value === password;
-  }
-
   return (
     <Card>
       <div className="card-title">
@@ -55,14 +49,14 @@ const ResetPassword: React.FC<Props> = ({ token }) => {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <PasswordInput
           label="Nouveau mot de passe"
-          register={register("password", { required: true, validate: passwordValidator })}
-          error={!isNil(errors.password)}
+          register={register("password", formRequire({ validate: passwordValidator }))}
+          error={errors.password}
         />
 
         <PasswordInput
           label="Repetez le mot de passe"
-          register={register("repeatPassword", { required: true, validate: validateSame })}
-          error={!isNil(errors.repeatPassword)}
+          register={register("repeatPassword", formRequire({ validate: validatePasswordWithRepeat(getValues) }))}
+          error={errors.repeatPassword}
         />
 
         <Button>Changer mon mot de passe</Button>
