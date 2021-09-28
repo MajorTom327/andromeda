@@ -35,12 +35,12 @@ const CreateTaskByProject: React.FC<Props> = ({ projectId, onSubmit }) => {
     <div className="flex flex-col gap-3">
       <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
       <input className="input input-bordered" type="text" {...register("label", formRequire())} placeholder="Nom de la tache" />
-      {errors.label && <Alert>Ce champs est requis</Alert>}
+      {errors.label && <Alert>Ce champ est requis</Alert>}
 
       <textarea className="textarea textarea-bordered" rows={10} {...register("detail")} placeholder="Détails de la tache" />
 
       <input className="input input-bordered" type="date" {...register("date", formRequire())} placeholder="Date de la tache" />
-      {errors.date && <Alert>Ce champs est requis</Alert>}
+      {errors.date && <Alert>Ce champ est requis</Alert>}
 
 
       <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Valider</Button>

@@ -26,7 +26,7 @@ const Input: React.FC<Props> = ({ label, register, placeholder, error, type }) =
         {...register} />
       {error && (
         <label className="label">
-          <span className="label-text-alt text-error">{error?.message || 'Ce champs est requis'}</span>
+          <span className="label-text-alt text-error">{error?.message || 'Ce champ est requis'}</span>
         </label>
       )}
     </div>

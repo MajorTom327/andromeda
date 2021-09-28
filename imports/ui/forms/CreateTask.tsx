@@ -30,32 +30,32 @@ const CreateTask: React.FC<Props> = ({ onSubmit }) => {
   }
 
   return (
-  <div className="flex flex-col gap-3">
-    <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
-    <input className="input input-bordered" type="text" {...register("label", formRequire())} placeholder="Nom de la tache" />
-    {errors.label && <Alert>Ce champs est requis</Alert>}
+    <div className="flex flex-col gap-3">
+      <h1 className="text-center text-lg font-semibold">Création d'une tâche</h1>
+      <input className="input input-bordered" type="text" {...register("label", formRequire())} placeholder="Nom de la tache" />
+      {errors.label && <Alert>Ce champ est requis</Alert>}
 
-    <select className="select select-bordered" defaultValue="" {...register('project', formRequire({ validate: (v: string[]) => v.length > 0 }))}>
-      {isProjectsReady
-        ? (
-          <>
-            <option value="">Aucune valeur selectionnée...</option>
-            {projects.fetch().map((project) => <option key={project._id} value={project._id}>{project.name}</option>)}
-          </>
-        )
-        : (<option value="" disabled>Chargement en cours...</option>)
-      }
-    </select>
-    {errors.project && <Alert>Ce champs est requis</Alert>}
+      <select className="select select-bordered" defaultValue="" {...register('project', formRequire({ validate: (v: string[]) => v.length > 0 }))}>
+        {isProjectsReady
+          ? (
+            <>
+              <option value="">Aucune valeur selectionnée...</option>
+              {projects.fetch().map((project) => <option key={project._id} value={project._id}>{project.name}</option>)}
+            </>
+          )
+          : (<option value="" disabled>Chargement en cours...</option>)
+        }
+      </select>
+      {errors.project && <Alert>Ce champ est requis</Alert>}
 
-    <textarea className="textarea textarea-bordered" rows={10} {...register("detail")} placeholder="Détails de la tache" />
+      <textarea className="textarea textarea-bordered" rows={10} {...register("detail")} placeholder="Détails de la tache" />
 
-    <input className="input input-bordered" type="date" {...register("date", formRequire())} placeholder="Date de la tache" />
-    {errors.date && <Alert>Ce champs est requis</Alert>}
+      <input className="input input-bordered" type="date" {...register("date", formRequire())} placeholder="Date de la tache" />
+      {errors.date && <Alert>Ce champ est requis</Alert>}
 
 
-    <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Valider</Button>
-  </div>);
+      <Button type="success" onClick={handleSubmit(onSubmitHandler)}>Valider</Button>
+    </div>);
 }
 
 CreateTask.defaultProps = {
