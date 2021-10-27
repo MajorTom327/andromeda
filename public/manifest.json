@@ -1,6 +1,5 @@
 {
   "theme_color": "#0a0a0b",
-  "background_color": "#0a0a0b",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
@@ -8,6 +7,12 @@
   "description": "Application de gestion de projet",
   "short_name": "Andromeda",
   "icons": [
+    {
+      "src": "/img/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/img/icon-192x192.png",
       "sizes": "192x192",
