@@ -25,7 +25,7 @@ const Card: React.FC<Props> = ({ children, className,
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseLeave}
       onTouchEnd={onTouchEnd}
-      className={classNames('card bordered bg-neutral shadow-lg overflow-visible', className)}>
+      className={classNames('card bordered overflow-visible', className)}>
       <div className="card-body">
         {children}
       </div>

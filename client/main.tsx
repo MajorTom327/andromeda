@@ -8,5 +8,5 @@ import luxon from 'luxon';
 Meteor.startup(() => {
   luxon.Settings.defaultLocale = 'fr';
   render(<App />, document.getElementById('react-target'));
-  document.querySelector('html')?.setAttribute('data-theme', 'dark');
+  //document.querySelector('html')?.setAttribute('data-theme', 'dark');
 });
