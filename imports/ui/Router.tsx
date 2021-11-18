@@ -1,6 +1,5 @@
 import { useRoutes } from 'hookrouter';
-import React, { lazy, Suspense } from 'react';
-import Loading from './components/Loading';
+import React, { lazy } from 'react';
 import NotFound from './pages/NotFound';
 
 type Props = {

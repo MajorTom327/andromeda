@@ -20,7 +20,7 @@ const Drawer: React.FC<Props> = ({ children, isOpen, onClose }) => {
         {children}
       </div>
       {user && (
-        <div className="drawer-side shadow-xl border-r border-base-200" style={{ minWidth: '25vw' }}>
+        <div className="drawer-side shadow-xl border-r border-base-200" style={{ minWidth: '15vw' }}>
           <label className="drawer-overlay" onClick={onClose}></label>
           <div className="flex flex-col justify-between bg-base-100">
             <ul className="menu p-4 overflow-y-auto bg-base-100 text-base-content gap-2">
